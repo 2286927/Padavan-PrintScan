@@ -41,7 +41,7 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
-    - name: Configure (minimal: zerotier + print + scan)
+    - name: Configure minimal - zerotier + print + scan
       env:
         KERNEL: 3.4
       run: |

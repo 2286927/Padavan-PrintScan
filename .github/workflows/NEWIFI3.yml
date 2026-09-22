@@ -47,7 +47,7 @@ jobs:
         sed -i 's/size_etc="6M"/size_etc="18M"/g' /opt/rt-n56u/trunk/user/scripts/dev_init.sh
         sed -i 's/size_tmp="24M"/size_tmp="120M"/g' /opt/rt-n56u/trunk/user/scripts/dev_init.sh
         sed -i 's/mtd_part_size=65536/mtd_part_size=18874368/g' /opt/rt-n56u/trunk/user/scripts/mtd_storage.sh
-    - name: Configure (minimal: zerotier + print + scan)
+    - name: Configure minimal - zerotier + print + scan
       env:
         KERNEL: 3.4
       run: |
