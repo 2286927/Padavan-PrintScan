@@ -73,6 +73,8 @@ jobs:
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_PARTED=y/CONFIG_FIRMWARE_INCLUDE_PARTED=n/' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_HDPARM=y/CONFIG_FIRMWARE_INCLUDE_HDPARM=n/' .config
         # === y1 TF 卡槽：板级内核默认关 MMC，补 SD 驱动链（对照 NEWIFI-D1 板级配置：MMC/BLOCK/SDHCI/PLTFM/MTK_MMC）===
+        # EXPERIMENTAL 改 n：MMC=y 会暴露一串 EXPERIMENTAL&&MMC 的 SDIO 杂项驱动（IWMC3200TOP/TIFM 等），板级无答案导致 silentoldconfig NEW abort
+        sed -i 's/CONFIG_EXPERIMENTAL=y/# CONFIG_EXPERIMENTAL is not set/' configs/boards/NEWIFI-MINI/kernel-3.4.x.config
         sed -i 's/# CONFIG_MMC is not set/CONFIG_MMC=y/' configs/boards/NEWIFI-MINI/kernel-3.4.x.config
         sed -i '/^CONFIG_MMC=y/a CONFIG_MMC_BLOCK=y\nCONFIG_MMC_BLOCK_MINORS=8\nCONFIG_MMC_SDHCI=y\nCONFIG_MMC_SDHCI_PLTFM=y\nCONFIG_MTK_MMC=y' configs/boards/NEWIFI-MINI/kernel-3.4.x.config
         echo ">> y1 SD driver chain patched:"; grep -E "CONFIG_MMC|CONFIG_MTK_MMC" configs/boards/NEWIFI-MINI/kernel-3.4.x.config
